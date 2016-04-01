@@ -1,38 +1,27 @@
 package it.sijmen;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+
+import org.junit.Test;
+import org.xml.sax.SAXException;
+
+import java.io.IOException;
+import static org.junit.Assert.*;
 
 /**
- * Unit test for simple App.
+ * Unit test for simple HomePageController.
  */
-public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
+public class AppTest {
 
     /**
-     * @return the suite of tests being tested
+     * Test of de tester uberhoupt kan werken. Bijvoorbeeld, als
+     * in het uitvoeren van de tests iets kapot is, dan faalt
+     * deze test.
+     * @throws IOException
+     * @throws SAXException
      */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
+    @Test
+    public void testerTest() throws IOException, SAXException {
+        assertEquals(1, 1);
     }
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
-    }
 }
