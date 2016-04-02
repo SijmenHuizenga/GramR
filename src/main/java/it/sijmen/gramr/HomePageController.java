@@ -1,4 +1,4 @@
-package it.sijmen;
+package it.sijmen.gramr;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,19 +9,18 @@ import java.io.IOException;
 
 /**
  * Hello world!
- *
  */
 @WebServlet("/MyApp/*")
 public class HomePageController extends HttpServlet {
 
-     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         req.setAttribute("data", "Hello Getter!");
 
         req.getRequestDispatcher("index.jsp").forward(req, resp);
     }
 
-     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         req.setAttribute("data", "Hello poster!");
 
