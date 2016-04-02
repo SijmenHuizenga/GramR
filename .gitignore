@@ -2,3 +2,5 @@
 *.iml
 target/
 out/
+Presentation/target
+Service/target

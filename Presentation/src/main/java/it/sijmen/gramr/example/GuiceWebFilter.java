@@ -10,7 +10,7 @@ import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
 /**
- * Created by Sinius on 2-4-2016.
+ * Created by Sijmen on 2-4-2016.
  */
 @WebFilter("/*")
 public class GuiceWebFilter extends GuiceFilter {

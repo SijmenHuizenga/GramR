@@ -16,18 +16,18 @@ import java.io.IOException;
 @Singleton
 public class ExamplePageController extends HttpServlet {
 
-    private String helloWorldText;
+    private ExamplePageModel model;
 
     @Inject
-    public ExamplePageController(@Named("HelloWorldTxt") String helloWorldText){
-        this.helloWorldText = helloWorldText;
+    public ExamplePageController(ExamplePageModel model){
+        this.model = model;
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("data", helloWorldText);
+        req.setAttribute("pageModel", model);
 
         //include ipv forward want: http://stackoverflow.com/questions/5284026/forwarding-request-to-a-jsp
-        req.getRequestDispatcher("/index.jsp").include(req, resp);
+        req.getRequestDispatcher("/ExamplePageView.jsp").include(req, resp);
     }
 }
