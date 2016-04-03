@@ -9,7 +9,7 @@ Aan de Presentatie kant heb je te maken met een Controler die aan een Model om d
 
 Nu is het zo dat er voor één Model, meerdere manieren zijn om de data van de Service laag op te halen. Dan kom je dus uit op een volgend ontwerp:
 
-![controller model abstraction](https://github.com/...)
+![controller model abstraction](https://raw.githubusercontent.com/SijmenHuizenga/GramR/master/docs/diagrams/controller%20model%20abstraction.png)
 
 Te zien is dat de Controller via een Interface toegang krijgt tot een van de implementaties van het Model, maar hij weet niet welke. Dit wordt namenlijk geregeld door Guice Dependency Injection. Op deze manier kan Snel en Makkenlijk gewisseld worden van Model-Implementatie.
 
@@ -22,7 +22,7 @@ Een ander voorbeeld
 
 In deze twee voorbeelden wordt de service-laag op heel verschillende manieren aangesproken en moet dit worden omgezet naar een éénduidige vraag naar de domein-klasse. Dit is precies omgekeerd van de Presentatie kant waarbij één vraag op verschillende manieren afgehandeld moest worden. De oplossing voor de service laag is als volgt:
 
-![service abstraction](https://github.com/...)
+![service abstraction](https://raw.githubusercontent.com/SijmenHuizenga/GramR/master/docs/diagrams/service%20abstraction.PNG)
 
 Te zien is dat er meerdere extenties zijn op de abstracte klasse Service. De klasse Service
 verzorgt en protected methode waarmee de 'ruwe' data vanuit de Domein klasse kan worden gehaald. Deze data mogen de child-klasse omzetten naar een eigen gewenste formaat. De child-klasse hebben in dit ontwerp geen rechtstreekste toegang tot de domein klasse. 
@@ -34,4 +34,4 @@ De keuze over welke Service implementatie gebruikt wordt is geheel afhankelijk v
 Totaal
 ------
 Het totale plaatje ziet er dan als volgt uit:
-![presntation service class diagram](https://github.com/...)
+![presntation service class diagram](https://raw.githubusercontent.com/SijmenHuizenga/GramR/master/docs/diagrams/presentation%20service%20klass%20diagram.PNG)
