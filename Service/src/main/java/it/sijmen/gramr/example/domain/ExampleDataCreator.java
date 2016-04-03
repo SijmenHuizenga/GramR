@@ -1,4 +1,4 @@
-package it.sijmen.gramr.example.service;
+package it.sijmen.gramr.example.domain;
 
 import com.google.inject.Inject;
 

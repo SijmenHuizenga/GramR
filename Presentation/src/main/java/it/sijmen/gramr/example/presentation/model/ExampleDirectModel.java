@@ -1,16 +1,16 @@
 package it.sijmen.gramr.example.presentation.model;
 
-import it.sijmen.gramr.example.presentation.ExamplePageModel;
+import it.sijmen.gramr.example.presentation.ExampleModel;
 import it.sijmen.gramr.example.service.adaptee.ExampleDirectService;
 
 /**
  * Created by Sijmen on 2-4-2016.
  */
-public class ExamplePageDirectModel implements ExamplePageModel {
+public class ExampleDirectModel implements ExampleModel {
 
     private ExampleDirectService exampleService;
 
-    public ExamplePageDirectModel(){
+    public ExampleDirectModel(){
         this.exampleService = new ExampleDirectService();
     }
 

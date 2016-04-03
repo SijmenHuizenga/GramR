@@ -1,6 +1,6 @@
 package it.sijmen.gramr.example.presentation.model;
 
-import it.sijmen.gramr.example.presentation.ExamplePageModel;
+import it.sijmen.gramr.example.presentation.ExampleModel;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,7 +10,7 @@ import java.net.URL;
 /**
  * Created by Sinius on 3-4-2016.
  */
-public class ExamplePageHttpModel implements ExamplePageModel {
+public class ExampleHttpModel implements ExampleModel {
 
     public String getData() {
         try{

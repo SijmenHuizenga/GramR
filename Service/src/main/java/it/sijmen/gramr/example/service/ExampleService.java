@@ -4,6 +4,7 @@ import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import it.sijmen.gramr.example.MyModule;
+import it.sijmen.gramr.example.domain.ExampleDataCreator;
 
 /**
  * Created by Sijmen on 2-4-2016.
