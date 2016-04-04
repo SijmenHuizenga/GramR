@@ -1,8 +1,9 @@
+<%@taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@tag description="Base Wrapper Tag" pageEncoding="UTF-8"%>
 <html>
 <head>
-    <title>Example Page</title>
+    <title>GramR</title>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

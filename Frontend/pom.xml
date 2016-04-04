@@ -17,17 +17,17 @@
     </properties>
 
     <dependencies>
-        <!-- alleen nodig als "Direct Communication" via methode aanroepen wordt gebruikt -->
-        <dependency>
-            <groupId>it.sijmen</groupId>
-            <artifactId>gramr.backend</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-
         <!-- Als je met iemand praat, moet je weten waarover je praat-->
         <dependency>
             <groupId>it.sijmen</groupId>
             <artifactId>gramr.common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- alleen nodig als "Direct Communication" via methode aanroepen wordt gebruikt -->
+        <dependency>
+            <groupId>it.sijmen</groupId>
+            <artifactId>gramr.backend</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 

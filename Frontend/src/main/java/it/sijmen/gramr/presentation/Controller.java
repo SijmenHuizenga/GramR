@@ -1,15 +1,27 @@
 package it.sijmen.gramr.presentation;
 
+import com.google.inject.Inject;
+import com.google.inject.Provider;
+import com.google.inject.servlet.RequestParameters;
+
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * Created by Sijmen on 3-4-2016.
  */
 public abstract class Controller extends HttpServlet {
+
+    protected final String USER_COOKIE_KEY = "user";
+
+    @Inject
+    @RequestParameters
+    protected Provider<Map<String, String[]>> reqParamsProvider;
 
     private String pagesFolder = "/WEB-INF/pages/";
     private String jspExtention = ".jsp";
@@ -18,9 +30,31 @@ public abstract class Controller extends HttpServlet {
      * Shows a JSP file. This should be the final call in the 'doGet' method.
      * @param jspName The name of he servlet to show.
      */
-    public void show(HttpServletRequest req, HttpServletResponse resp, String jspName) throws ServletException, IOException {
+    protected void show(HttpServletRequest req, HttpServletResponse resp, String jspName) throws ServletException, IOException {
         //include ipv forward want: http://stackoverflow.com/questions/5284026/forwarding-request-to-a-jsp
         req.getRequestDispatcher(pagesFolder + jspName + jspExtention).include(req, resp);
+    }
+
+    private Cookie getUserCookie(HttpServletRequest req){
+        for (Cookie cookie : req.getCookies()) {
+            if(cookie.getName().equals(USER_COOKIE_KEY))
+                return cookie;
+        }
+        return null;
+    }
+
+    protected String getUser(HttpServletRequest req) {
+        Cookie cookie = getUserCookie(req);
+        if(cookie == null)
+            return null;
+        return cookie.getValue();
+    }
+
+    protected void setUser(HttpServletResponse resp, String user) {
+        Cookie c = new Cookie(USER_COOKIE_KEY, user);
+        c.setMaxAge(60*60*24);
+
+        resp.addCookie(c);
     }
 
 }

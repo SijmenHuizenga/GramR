@@ -11,6 +11,7 @@ import javax.ws.rs.core.MediaType;
  */
 public class ExampleRestModel implements ExampleModel {
 
+    //todo:inject
     public static final String JSON_SERIALIZER = "jersey.config.server.provider.packages";
     public static final String JACKSON_JSON_SERIALIZER = "com.fasterxml.jackson.jaxrs.json;it.sijmen.gramr";
 
