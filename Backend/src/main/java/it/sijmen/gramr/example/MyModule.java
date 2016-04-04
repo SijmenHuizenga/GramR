@@ -1,9 +1,8 @@
 package it.sijmen.gramr.example;
 
 import com.google.inject.AbstractModule;
-import com.google.inject.Provides;
 import com.google.inject.name.Names;
-import it.sijmen.gramr.example.data.DatabaseConnectionFactory;
+import it.sijmen.gramr.common.data.jdbc.JdbcDatabaseConnectionFactory;
 import it.sijmen.gramr.example.data.ExampleDAO;
 import it.sijmen.gramr.example.data.daos.ExampleJDBCDAO;
 
@@ -23,7 +22,7 @@ public class MyModule extends AbstractModule {
         bind(String.class).annotatedWith(Names.named("Jdbc Connection Username String")).toInstance("GramRUser");
         bind(String.class).annotatedWith(Names.named("Jdbc Connection Password String")).toInstance("somerandompasswordnobodyknows");
 
-        bind(Connection.class).toProvider(DatabaseConnectionFactory.class);
+        bind(Connection.class).toProvider(JdbcDatabaseConnectionFactory.class);
 
         bind(ExampleDAO.class).to(ExampleJDBCDAO.class);
 

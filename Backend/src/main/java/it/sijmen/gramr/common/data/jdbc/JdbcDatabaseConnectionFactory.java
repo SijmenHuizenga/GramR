@@ -1,4 +1,4 @@
-package it.sijmen.gramr.example.data;
+package it.sijmen.gramr.common.data.jdbc;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
@@ -13,7 +13,7 @@ import java.sql.SQLException;
  * Created by Sinius on 3-4-2016.
  */
 @Singleton
-public class DatabaseConnectionFactory implements Provider<Connection> {
+public class JdbcDatabaseConnectionFactory implements Provider<Connection> {
 
     private String connStr;
     private String driverClass;
@@ -24,7 +24,7 @@ public class DatabaseConnectionFactory implements Provider<Connection> {
     private Connection connection = null;
 
     @Inject
-    public DatabaseConnectionFactory(
+    public JdbcDatabaseConnectionFactory(
             @Named("Jdbc Connection String") String connStr,
             @Named("Jdbc Driver Class String") String driverClass,
             @Named("Jdbc Connection Username String") String username,
@@ -40,11 +40,22 @@ public class DatabaseConnectionFactory implements Provider<Connection> {
         //kan niet throw doen omdat dit binnen een provider niet is toegestaan.
         if(!loadDriver())
             return null;
-        if(hasConnectionCached())
-            return getCachedConnection();
+        if(hasConnectionCached()) {
+            if(cacheConnectionIsOpen())
+                return getCachedConnection();
+        }
         Connection connection = createConnection();
         setCachedConnection(connection);
         return connection;
+    }
+
+    private boolean cacheConnectionIsOpen(){
+        try {
+            return !connection.isClosed() && connection.isValid(2);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     private boolean hasConnectionCached(){
