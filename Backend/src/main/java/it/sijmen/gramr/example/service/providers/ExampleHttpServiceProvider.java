@@ -35,7 +35,13 @@ public class ExampleHttpServiceProvider extends ExampleServiceProvider implement
     }
 
     public void handle(HttpExchange httpExchange) throws IOException {
-        String response = this.getData();
+        String response;
+        try{
+            response = this.getData().toString();
+        }catch(IOException e){
+            response = "Er is iets fout gegaan: " + e.getMessage();
+        }
+
         httpExchange.sendResponseHeaders(200, response.length());
         OutputStream os = httpExchange.getResponseBody();
         os.write(response.getBytes());

@@ -1,23 +1,31 @@
 package it.sijmen.gramr.common.pojo;
 
-import java.util.ArrayList;
-
 /**
- * Created by Sinius on 4-4-2016.
+ * Created by Sijmen on 4-4-2016.
  */
 public class ExamplePojo {
 
-    private ArrayList<String> data;
+    private int id;
+    private String data;
 
-    public ExamplePojo() {
-        this.data = new ArrayList<>();
+    public ExamplePojo(int id, String data) {
+        this.id = id;
+        this.data = data;
     }
 
-    public String[] getData() {
-        return data.toArray(new String[data.size()]);
+    public int getId() {
+        return id;
     }
 
-    public void addData(String data) {
-        this.data.add(data);
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
     }
 }

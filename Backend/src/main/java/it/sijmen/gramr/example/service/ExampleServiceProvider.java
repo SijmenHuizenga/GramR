@@ -1,28 +1,24 @@
 package it.sijmen.gramr.example.service;
 
-import com.google.inject.Guice;
-import com.google.inject.Inject;
-import com.google.inject.Injector;
-import it.sijmen.gramr.example.MyModule;
+import it.sijmen.gramr.common.pojo.ExamplePojo;
+import it.sijmen.gramr.common.service.AbstractServiceProvider;
+
+import java.io.IOException;
 
 /**
  * Created by Sijmen on 2-4-2016.
  */
-public abstract class ExampleServiceProvider {
+public abstract class ExampleServiceProvider extends AbstractServiceProvider<ExampleService>{
 
-    private ExampleService dataCreator;
+    protected ExampleService theService;
 
-    @Inject
-    public ExampleServiceProvider(){
-        this.dataCreator = createInjector().getInstance(ExampleService.class);
+    public ExampleServiceProvider() {
+        this.theService = createInjector().getInstance(ExampleService.class);
     }
 
-    protected String getData(){
-        return dataCreator.getData();
+    protected ExamplePojo getData() throws IOException {
+        return theService.getData();
     }
-
-    protected Injector createInjector(){
-        return Guice.createInjector(new MyModule());
-    }
+    
 
 }

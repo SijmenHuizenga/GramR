@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 
 /**
- * Created by Sinius on 3-4-2016.
+ * Created by Sijmen on 3-4-2016.
  */
 public class ExampleHttpModel implements ExampleModel {
 

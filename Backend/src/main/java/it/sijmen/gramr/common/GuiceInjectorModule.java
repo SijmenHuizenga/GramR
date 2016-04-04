@@ -1,4 +1,4 @@
-package it.sijmen.gramr.example;
+package it.sijmen.gramr.common;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
@@ -11,7 +11,7 @@ import java.sql.Connection;
 /**
  * Created by Sijmen on 3-4-2016.
  */
-public class MyModule extends AbstractModule {
+public class GuiceInjectorModule extends AbstractModule {
 
     @Override
     protected void configure() {

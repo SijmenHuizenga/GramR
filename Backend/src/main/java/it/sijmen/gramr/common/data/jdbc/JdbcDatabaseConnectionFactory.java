@@ -10,7 +10,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * Created by Sinius on 3-4-2016.
+ * Created by Sijmen on 3-4-2016.
  */
 @Singleton
 public class JdbcDatabaseConnectionFactory implements Provider<Connection> {

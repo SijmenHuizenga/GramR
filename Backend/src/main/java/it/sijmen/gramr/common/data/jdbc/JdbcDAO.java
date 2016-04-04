@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.sql.Connection;
 
 /**
- * Created by Sinius on 4-4-2016.
+ * Created by Sijmen on 4-4-2016.
  */
 public class JdbcDAO extends DAO {
 
