@@ -1,4 +1,4 @@
-package it.sijmen.gramr.common.service;
+package it.sijmen.gramr.service;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;

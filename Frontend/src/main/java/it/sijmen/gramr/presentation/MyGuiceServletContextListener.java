@@ -1,4 +1,4 @@
-package it.sijmen.gramr.example;
+package it.sijmen.gramr.presentation;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;

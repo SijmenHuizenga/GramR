@@ -1,8 +1,8 @@
-package it.sijmen.gramr.common;
+package it.sijmen.gramr.data;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
-import it.sijmen.gramr.common.data.jdbc.JdbcDatabaseConnectionFactory;
+import it.sijmen.gramr.data.jdbc.JdbcDatabaseConnectionFactory;
 import it.sijmen.gramr.example.data.ExampleDAO;
 import it.sijmen.gramr.example.data.daos.ExampleJDBCDAO;
 

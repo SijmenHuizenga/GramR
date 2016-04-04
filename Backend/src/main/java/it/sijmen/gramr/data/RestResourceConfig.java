@@ -1,4 +1,4 @@
-package it.sijmen.gramr.common;
+package it.sijmen.gramr.data;
 
 import org.glassfish.jersey.server.ResourceConfig;
 

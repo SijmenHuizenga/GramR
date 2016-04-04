@@ -1,6 +1,6 @@
-package it.sijmen.gramr.example.presentation.model;
+package it.sijmen.gramr.example.model;
 
-import it.sijmen.gramr.example.presentation.ExampleModel;
+import it.sijmen.gramr.example.ExampleModel;
 
 import java.io.BufferedReader;
 import java.io.IOException;

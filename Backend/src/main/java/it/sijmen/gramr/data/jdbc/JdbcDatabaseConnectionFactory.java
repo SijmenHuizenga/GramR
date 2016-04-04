@@ -1,4 +1,4 @@
-package it.sijmen.gramr.common.data.jdbc;
+package it.sijmen.gramr.data.jdbc;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;

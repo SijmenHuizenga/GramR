@@ -1,4 +1,4 @@
-package it.sijmen.gramr.example;
+package it.sijmen.gramr.presentation;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

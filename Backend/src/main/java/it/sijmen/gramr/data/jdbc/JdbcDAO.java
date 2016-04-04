@@ -1,6 +1,6 @@
-package it.sijmen.gramr.common.data.jdbc;
+package it.sijmen.gramr.data.jdbc;
 
-import it.sijmen.gramr.common.data.DAO;
+import it.sijmen.gramr.data.DAO;
 
 import java.io.IOException;
 import java.sql.Connection;

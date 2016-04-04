@@ -1,11 +1,10 @@
-package it.sijmen.gramr.example.presentation.model;
+package it.sijmen.gramr.example.model;
 
 import it.sijmen.gramr.common.pojo.ExamplePojo;
-import it.sijmen.gramr.example.presentation.ExampleModel;
+import it.sijmen.gramr.example.ExampleModel;
 
 import javax.ws.rs.client.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 /**
  * Created by Sijmen on 4-4-2016.

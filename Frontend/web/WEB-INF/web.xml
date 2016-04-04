@@ -5,7 +5,7 @@
          version="3.1">
 
     <listener>
-        <listener-class>it.sijmen.gramr.example.MyGuiceServletContextListener</listener-class>
+        <listener-class>it.sijmen.gramr.presentation.MyGuiceServletContextListener</listener-class>
     </listener>
 
 </web-app>

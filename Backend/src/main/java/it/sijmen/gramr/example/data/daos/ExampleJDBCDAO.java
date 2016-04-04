@@ -1,8 +1,8 @@
 package it.sijmen.gramr.example.data.daos;
 
 import com.google.inject.Inject;
-import it.sijmen.gramr.common.data.jdbc.JdbcDAO;
-import it.sijmen.gramr.common.data.jdbc.JdbcDatabaseConnectionFactory;
+import it.sijmen.gramr.data.jdbc.JdbcDAO;
+import it.sijmen.gramr.data.jdbc.JdbcDatabaseConnectionFactory;
 import it.sijmen.gramr.common.pojo.ExamplePojo;
 import it.sijmen.gramr.example.data.ExampleDAO;
 

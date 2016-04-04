@@ -1,11 +1,10 @@
-package it.sijmen.gramr.example.presentation;
+package it.sijmen.gramr.example;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import it.sijmen.gramr.example.Controller;
+import it.sijmen.gramr.presentation.Controller;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
