@@ -15,7 +15,7 @@ public class ExampleDirectModel implements ExampleModel {
     }
 
     public String getData(){
-        return this.exampleService.getData();
+        return this.exampleService.getData().getData();
     }
 
 }

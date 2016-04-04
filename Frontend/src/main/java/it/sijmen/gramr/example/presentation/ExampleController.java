@@ -25,7 +25,7 @@ public class ExampleController extends Controller {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("pageModel", model);
+        req.setAttribute("data", model.getData());
 
         show(req, resp, "ExamplePageView");
     }

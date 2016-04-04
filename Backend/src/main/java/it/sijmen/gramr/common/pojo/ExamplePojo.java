@@ -8,6 +8,9 @@ public class ExamplePojo {
     private int id;
     private String data;
 
+    public ExamplePojo() {
+    }
+
     public ExamplePojo(int id, String data) {
         this.id = id;
         this.data = data;
