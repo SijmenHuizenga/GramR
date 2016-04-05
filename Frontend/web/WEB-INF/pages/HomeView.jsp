@@ -10,7 +10,7 @@
             </h1>
             Welkom op de applicatie!
             Klik <a href="${pageContext.request.contextPath}/photos">hier</a> om alle foto's te bekijken.<br>
-            Klik <a href="${pageContext.request.contextPath}/sets">hier</a> om alle sets's te bekijken.<br>
+            Klik <a href="${pageContext.request.contextPath}/sets">hier</a> om alle je sets's te bekijken.<br>
             <br>
             <form method="get" action=".">
                 <div class="form-group">

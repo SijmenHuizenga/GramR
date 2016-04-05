@@ -61,4 +61,15 @@ public class SetDirectModel implements SetModel {
             return false;
         }
     }
+
+    @Override
+    public boolean addPhotoToSet(String setName, int photoId, String user) {
+        try {
+            provider.addPhotoToSet(setName, photoId, user);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

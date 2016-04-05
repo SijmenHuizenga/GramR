@@ -65,7 +65,7 @@ public class SetController extends Controller{
         //todo: dit zout automatisch gedaan kunnen worden?
         PhotoPrivacy thePhoto = set.getPhoto(id);
         if(thePhoto != null)
-            thePhoto.toggle();
+            thePhoto.toggleOpen();
 
     }
 

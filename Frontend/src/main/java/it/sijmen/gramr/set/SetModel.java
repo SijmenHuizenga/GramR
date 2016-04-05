@@ -23,6 +23,13 @@ public interface SetModel {
      */
     boolean deletePhotoFromSet(String setName, int photoId, String user);
 
+    /**
+     * Toggelt de boolean 'open' binnen voor een foto binnen een Set
+     */
     boolean toggleOpenPhotoInSet(String setName, int photoId, String user);
 
+    /**
+     * Voeg een bestaande Photo toe aan een Set.
+     */
+    boolean addPhotoToSet(String setName, int photoId, String user);
 }

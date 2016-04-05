@@ -17,6 +17,5 @@ public interface SetDAO {
 
     void deletePhotoFromSet(String setName, int photoId) throws IOException;
 
-    void savePhotoPrivacyInSet(String setName, int photoId, boolean isOpen) throws IOException;
-
+    void savePhotoPrivacyInSet(String setName, PhotoPrivacy photo) throws IOException;
 }

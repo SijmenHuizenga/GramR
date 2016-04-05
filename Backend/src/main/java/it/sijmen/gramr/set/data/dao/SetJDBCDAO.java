@@ -92,19 +92,20 @@ public class SetJDBCDAO extends JdbcDAO implements SetDAO {
     }
 
     @Override
-    public void savePhotoPrivacyInSet(String setName, int photoId, boolean isOpen) throws IOException {
-        this.deletePhotoFromSet(setName, photoId);
+    public void savePhotoPrivacyInSet(String setName, PhotoPrivacy photo) throws IOException {
+        this.deletePhotoFromSet(setName, photo.getPhoto().getId());
 
         Connection connection;
         try {
             connection = getConnection();
 
             //todo: prepared statement
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO `GramR`.`PhotoPrivacy` (`set_name`, `photo_id`, `open`) VALUES ('"+setName+"', '"+photoId+"', "+isOpen+");");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO `GramR`.`PhotoPrivacy` (`set_name`, `photo_id`, `open`) VALUES ('"+setName+"', '"+photo.getPhoto().getId()+"', "+photo.isOpen()+");");
             statement.executeUpdate();
             statement.close();
         } catch (IOException | SQLException e) {
             throw new IOException("Kon POJO niet opslaan in de database: " + e.getMessage(), e);
         }
     }
+
 }

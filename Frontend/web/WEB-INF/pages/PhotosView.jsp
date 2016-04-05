@@ -2,6 +2,9 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 <t:template>
+  <%--@elvariable id="photosList" type="java.util.List<Photo>"--%>
+  <%--@elvariable id="addToSetModeEnabled" type="boolean"--%>
+  <%--@elvariable id="addToSetSet" type="it.sijmen.gramr.common.pojo.Set"--%>
 
   <div class="row">
     <div class="col-lg-12">
@@ -19,7 +22,7 @@
         </thead>
         <tbody>
 
-        <%--@elvariable id="photosList" type="java.util.List<Photo>"--%>
+
         <c:forEach var="photo" items="${photosList}">
           <tr>
             <td><a href="<c:out value="${photo.url}"/>"><c:out value="${photo.title}"/></a></td>
@@ -29,6 +32,10 @@
             <td><c:if test="${not empty photo.filter}"><c:out value="${photo.filter.description}"/></c:if></td>
             <td>
               <a href="${pageContext.request.contextPath}/photo?id=<c:out value="${photo.id}"/>">Open</a>
+
+              <c:if test="${addToSetModeEnabled}">
+                | <a href="${pageContext.request.contextPath}/photos?addToSet=${addToSetSet.name}&id=${photo.id}">Voeg to aan Set</a>
+              </c:if>
             </td>
 
           </tr>
