@@ -16,4 +16,5 @@ public interface PhotoDAO {
 
     Photo getPhoto(int id) throws IOException;
 
+    Photo[] getAllPhotos() throws IOException;
 }

@@ -7,6 +7,10 @@ import it.sijmen.gramr.example.model.ExampleDirectModel;
 import it.sijmen.gramr.example.model.ExampleHttpModel;
 import it.sijmen.gramr.example.model.ExampleRestModel;
 import it.sijmen.gramr.home.HomeController;
+import it.sijmen.gramr.photo.PhotoController;
+import it.sijmen.gramr.photo.PhotoModel;
+import it.sijmen.gramr.photo.PhotosController;
+import it.sijmen.gramr.photo.model.PhotoDirectModel;
 import it.sijmen.gramr.set.SetController;
 import it.sijmen.gramr.set.SetsController;
 import it.sijmen.gramr.set.SetModel;
@@ -25,8 +29,8 @@ public class GuiceInjectorModule extends ServletModule {
         serve("/sets*").with(SetsController.class);
         serve("/set*").with(SetController.class);
 
-//        serve("/photo*").with(PhotoController.class);
-//        serve("/photos*").with(PhotosController.class);
+        serve("/photos*").with(PhotosController.class);
+        serve("/photo*").with(PhotoController.class);
 
         serve("/").with(HomeController.class);
 
@@ -40,6 +44,7 @@ public class GuiceInjectorModule extends ServletModule {
             default: //default is DIRECT.
                 bind(ExampleModel.class).to(ExampleDirectModel.class);
                 bind(SetModel.class).to(SetDirectModel.class);
+                bind(PhotoModel.class).to(PhotoDirectModel.class);
                 break;
         }
 

@@ -1,10 +1,8 @@
 package it.sijmen.gramr.photo.data.dao;
 
 import com.google.inject.Inject;
-import it.sijmen.gramr.common.pojo.ExamplePojo;
 import it.sijmen.gramr.common.pojo.Photo;
 import it.sijmen.gramr.common.pojo.PhotoPrivacy;
-import it.sijmen.gramr.common.pojo.Set;
 import it.sijmen.gramr.data.jdbc.JdbcDAO;
 import it.sijmen.gramr.data.jdbc.JdbcDatabaseConnectionFactory;
 import it.sijmen.gramr.photo.data.PhotoDAO;
@@ -84,5 +82,33 @@ public class PhotoJDBCDAO extends JdbcDAO implements PhotoDAO {
             throw new IOException("Kon POJO niet ophalen uit de database: " + e.getMessage(), e);
         }
         return null;
+    }
+
+    @Override
+    public Photo[] getAllPhotos() throws IOException {
+        Connection connection;
+        try {
+            connection = getConnection();
+
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Photo");
+            ResultSet resultSet = statement.executeQuery();
+
+            ArrayList<Photo> out = new ArrayList<>();
+
+            while(resultSet.next()){
+                out.add(new Photo(
+                        resultSet.getInt("id"),
+                        resultSet.getString("creator"),
+                        resultSet.getString("title"),
+                        resultSet.getString("url"),
+                        resultSet.getString("description"),
+                        null));
+            }
+            resultSet.close();
+            statement.close();
+            return out.toArray(new Photo[out.size()]);
+        } catch (IOException | SQLException e) {
+            throw new IOException("Kon POJO niet ophalen uit de database: " + e.getMessage(), e);
+        }
     }
 }
