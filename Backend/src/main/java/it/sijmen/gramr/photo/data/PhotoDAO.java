@@ -2,7 +2,6 @@ package it.sijmen.gramr.photo.data;
 
 import it.sijmen.gramr.common.pojo.Photo;
 import it.sijmen.gramr.common.pojo.PhotoPrivacy;
-import it.sijmen.gramr.common.pojo.Set;
 
 import java.io.IOException;
 import java.util.ArrayList;

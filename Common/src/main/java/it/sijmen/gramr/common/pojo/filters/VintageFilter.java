@@ -10,7 +10,7 @@ public class VintageFilter extends Filter {
     private int upperLeftX, upperLeftY, lowerRightX, lowerRightY;
 
     public VintageFilter() {
-        super("Vintage Filter: Make everything vintage alike");
+        super("Vintage Filter");
     }
 
     public VintageFilter(int upperLeftX, int upperLeftY, int lowerRightX, int lowerRightY) {

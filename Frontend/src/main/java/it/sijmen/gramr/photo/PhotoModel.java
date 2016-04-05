@@ -1,5 +1,6 @@
 package it.sijmen.gramr.photo;
 
+import it.sijmen.gramr.common.pojo.Filter;
 import it.sijmen.gramr.common.pojo.Photo;
 
 /**
@@ -11,4 +12,5 @@ public interface PhotoModel {
 
     Photo getPhotoById(int id);
 
+    boolean setFilter(int photoId, Filter filter, String user);
 }

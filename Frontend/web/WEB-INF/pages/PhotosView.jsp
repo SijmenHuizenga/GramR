@@ -25,7 +25,8 @@
             <td><a href="<c:out value="${photo.url}"/>"><c:out value="${photo.title}"/></a></td>
             <td><c:out value="${photo.creator}"/></td>
             <td><c:out value="${photo.description}"/></td>
-            <td><c:out value="${photo.filter}"/></td>
+
+            <td><c:if test="${not empty photo.filter}"><c:out value="${photo.filter.description}"/></c:if></td>
             <td>
               <a href="${pageContext.request.contextPath}/photo?id=<c:out value="${photo.id}"/>">Open</a>
             </td>

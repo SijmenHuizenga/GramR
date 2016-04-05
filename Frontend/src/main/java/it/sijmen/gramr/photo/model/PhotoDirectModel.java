@@ -1,8 +1,10 @@
 package it.sijmen.gramr.photo.model;
 
+import it.sijmen.gramr.common.pojo.Filter;
 import it.sijmen.gramr.common.pojo.Photo;
+import it.sijmen.gramr.filter.service.providers.FilterDirectServiceProvider;
 import it.sijmen.gramr.photo.PhotoModel;
-import it.sijmen.gramr.photo.service.providers.PhtoDirectServiceProvider;
+import it.sijmen.gramr.photo.service.providers.PhotoDirectServiceProvider;
 
 import java.io.IOException;
 
@@ -17,12 +19,14 @@ public class PhotoDirectModel implements PhotoModel {
      * Bij een @Inject gaat Guice proberen ook de childs te injecten, maar dat wordt
      * binnen de serviceProvder zelf geregeld.
      */
-    PhtoDirectServiceProvider provider = new PhtoDirectServiceProvider();
+    PhotoDirectServiceProvider photoProvider = new PhotoDirectServiceProvider();
+
+    FilterDirectServiceProvider filterProvider = new FilterDirectServiceProvider();
 
     @Override
     public Photo[] getAllPhotos() {
         try {
-            return provider.getAllPhotos();
+            return photoProvider.getAllPhotos();
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -32,10 +36,21 @@ public class PhotoDirectModel implements PhotoModel {
     @Override
     public Photo getPhotoById(int id) {
         try {
-            return provider.getPhotoById(id);
+            return photoProvider.getPhotoById(id);
         } catch (IOException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    @Override
+    public boolean setFilter(int photoId, Filter filter, String user) {
+        try {
+            filterProvider.setPhotoFilter(photoId, filter, user);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 }

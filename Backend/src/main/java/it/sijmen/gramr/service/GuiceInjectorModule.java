@@ -5,6 +5,8 @@ import com.google.inject.name.Names;
 import it.sijmen.gramr.data.jdbc.JdbcDatabaseConnectionFactory;
 import it.sijmen.gramr.example.data.ExampleDAO;
 import it.sijmen.gramr.example.data.daos.ExampleJDBCDAO;
+import it.sijmen.gramr.filter.data.FilterDAO;
+import it.sijmen.gramr.filter.data.dao.FilterJDBCDAO;
 import it.sijmen.gramr.photo.data.PhotoDAO;
 import it.sijmen.gramr.photo.data.dao.PhotoJDBCDAO;
 import it.sijmen.gramr.set.data.SetDAO;
@@ -29,6 +31,7 @@ public class GuiceInjectorModule extends AbstractModule {
         bind(ExampleDAO.class).to(ExampleJDBCDAO.class);
         bind(SetDAO.class).to(SetJDBCDAO.class);
         bind(PhotoDAO.class).to(PhotoJDBCDAO.class);
+        bind(FilterDAO.class).to(FilterJDBCDAO.class);
 
     }
 

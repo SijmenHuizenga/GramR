@@ -10,7 +10,7 @@ public class GrayFilter extends Filter {
     private int precentage;
 
     public GrayFilter() {
-        super("Gray Filter: Makes everything black and white");
+        super("Gray Filter");
     }
 
     public GrayFilter(int precentage) {

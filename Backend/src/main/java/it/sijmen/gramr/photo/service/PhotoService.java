@@ -1,8 +1,10 @@
 package it.sijmen.gramr.photo.service;
 
 import com.google.inject.Inject;
+import it.sijmen.gramr.common.pojo.Filter;
 import it.sijmen.gramr.common.pojo.Photo;
 import it.sijmen.gramr.common.pojo.Set;
+import it.sijmen.gramr.filter.data.FilterDAO;
 import it.sijmen.gramr.photo.data.PhotoDAO;
 import it.sijmen.gramr.service.AbstractService;
 
@@ -13,19 +15,24 @@ import java.io.IOException;
  */
 public class PhotoService extends AbstractService {
 
+    @Inject
     private PhotoDAO photoDAO;
 
     @Inject
-    public PhotoService(PhotoDAO photoDAO){
-        this.photoDAO = photoDAO;
-    }
+    private FilterDAO filterDAO;
 
     public Photo[] getAllPhotos() throws IOException {
-        return photoDAO.getAllPhotos();
+        Photo[] photos = photoDAO.getAllPhotos();
+        for (Photo photo : photos)
+            photo.setFilter(filterDAO.getPhotoFilter(photo.getId()));
+        return photos;
     }
 
     public Photo getPhotoById(int id) throws IOException {
-        return photoDAO.getPhoto(id);
+        Photo photo = photoDAO.getPhoto(id);
+        if(photo != null)
+            photo.setFilter(filterDAO.getPhotoFilter(photo.getId()));
+        return photo;
     }
 
 }

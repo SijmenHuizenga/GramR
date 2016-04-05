@@ -1,8 +1,11 @@
 package it.sijmen.gramr.photo.data.dao;
 
 import com.google.inject.Inject;
+import it.sijmen.gramr.common.pojo.Filter;
 import it.sijmen.gramr.common.pojo.Photo;
 import it.sijmen.gramr.common.pojo.PhotoPrivacy;
+import it.sijmen.gramr.common.pojo.filters.GrayFilter;
+import it.sijmen.gramr.common.pojo.filters.VintageFilter;
 import it.sijmen.gramr.data.jdbc.JdbcDAO;
 import it.sijmen.gramr.data.jdbc.JdbcDatabaseConnectionFactory;
 import it.sijmen.gramr.photo.data.PhotoDAO;

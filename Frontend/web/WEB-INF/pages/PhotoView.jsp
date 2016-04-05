@@ -26,9 +26,9 @@
     <hr>
     <div class="row">
       <div class="col-lg-12">
-        <a href="${pageContext.request.contextPath}/photo?setFilter=null">Remove all filters</a> |
-        <a href="${pageContext.request.contextPath}/photo?addToSet=gray">Set to Gray filter</a> |
-        <a href="${pageContext.request.contextPath}/photo?addToSet=vintage">set to Vintage filter</a>
+        <a href="${pageContext.request.contextPath}/photo?id=${thePhoto.id}&setFilter=null">Remove all filters</a> |
+        <a href="${pageContext.request.contextPath}/photo?id=${thePhoto.id}&setFilter=gray">Set to Gray filter</a> |
+        <a href="${pageContext.request.contextPath}/photo?id=${thePhoto.id}&setFilter=vintage">set to Vintage filter</a>
       </div>
     </div>
   </c:if>
