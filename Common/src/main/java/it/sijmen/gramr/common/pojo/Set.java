@@ -31,6 +31,14 @@ public class Set {
         return photos;
     }
 
+    public PhotoPrivacy getPhoto(int id){
+        for(PhotoPrivacy photo : photos){
+            if(photo.getPhoto().getId() == id)
+                return photo;
+        }
+        return null;
+    }
+
     public void setPhotos(ArrayList<PhotoPrivacy> photos) {
         this.photos = photos.toArray(new PhotoPrivacy[photos.size()]);
     }

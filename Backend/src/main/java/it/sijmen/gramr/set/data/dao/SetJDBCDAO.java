@@ -2,6 +2,7 @@ package it.sijmen.gramr.set.data.dao;
 
 import com.google.inject.Inject;
 
+import it.sijmen.gramr.common.pojo.PhotoPrivacy;
 import it.sijmen.gramr.common.pojo.Set;
 import it.sijmen.gramr.data.jdbc.JdbcDAO;
 import it.sijmen.gramr.data.jdbc.JdbcDatabaseConnectionFactory;
@@ -86,7 +87,24 @@ public class SetJDBCDAO extends JdbcDAO implements SetDAO {
             statement.executeUpdate();
             statement.close();
         } catch (IOException | SQLException e) {
-            throw new IOException("Kon POJO niet ophalen uit de database: " + e.getMessage(), e);
+            throw new IOException("Kon POJO niet verwijderen uit de database: " + e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public void savePhotoPrivacyInSet(String setName, int photoId, boolean isOpen) throws IOException {
+        this.deletePhotoFromSet(setName, photoId);
+
+        Connection connection;
+        try {
+            connection = getConnection();
+
+            //todo: prepared statement
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO `GramR`.`PhotoPrivacy` (`set_name`, `photo_id`, `open`) VALUES ('"+setName+"', '"+photoId+"', "+isOpen+");");
+            statement.executeUpdate();
+            statement.close();
+        } catch (IOException | SQLException e) {
+            throw new IOException("Kon POJO niet opslaan in de database: " + e.getMessage(), e);
         }
     }
 }

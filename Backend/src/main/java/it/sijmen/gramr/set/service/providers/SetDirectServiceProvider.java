@@ -21,4 +21,8 @@ public class SetDirectServiceProvider extends SetServiceProvider {
     public void deletePhotoFromSet(String setName, int photoId, String user) throws IOException{
         theService.deletePhotoFromSet(setName, photoId, user);
     }
+
+    public void toggleOpenPhotoInSet(String setName, int photoId, String user) throws IOException{
+        theService.toggleOpenPhotoInSet(setName, photoId, user);
+    }
 }

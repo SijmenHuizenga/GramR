@@ -10,9 +10,18 @@ import java.io.IOException;
  * Created by Sinius on 4-4-2016.
  */
 public class SetDirectModel implements SetModel {
+
+    //todo: is het wel goed dat deze open wordt gehouden de heel tijd? Ookal zijn er geen requests?
+    /**
+     * Kan niet worden Injected omdat de ServiceProviders een eigen injector hebben.
+     *
+     * Bij een @Inject gaat Guice proberen ook de childs te injecten, maar dat wordt
+     * binnen de serviceProvder zelf geregeld.
+     */
+    SetDirectServiceProvider provider = new SetDirectServiceProvider();
+
     @Override
     public Set[] getSetsByUser(String username) {
-        SetDirectServiceProvider provider = new SetDirectServiceProvider();
         try {
             return provider.getSetsByUser(username);
         } catch (IOException e) {
@@ -23,8 +32,6 @@ public class SetDirectModel implements SetModel {
 
     @Override
     public Set getSet(String name, String user) {
-        //deze moet elke keer opnieuw ivm dichten van de database connectie.
-        SetDirectServiceProvider provider = new SetDirectServiceProvider();
         try {
             return provider.getSet(name, user);
         } catch (IOException e) {
@@ -35,9 +42,19 @@ public class SetDirectModel implements SetModel {
 
     @Override
     public boolean deletePhotoFromSet(String setName, int photoId, String user) {
-        SetDirectServiceProvider provider = new SetDirectServiceProvider();
         try {
             provider.deletePhotoFromSet(setName, photoId, user);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean toggleOpenPhotoInSet(String setName, int photoId, String user) {
+        try {
+            provider.toggleOpenPhotoInSet(setName, photoId, user);
             return true;
         } catch (IOException e) {
             e.printStackTrace();

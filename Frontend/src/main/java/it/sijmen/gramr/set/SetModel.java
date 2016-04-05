@@ -23,4 +23,6 @@ public interface SetModel {
      */
     boolean deletePhotoFromSet(String setName, int photoId, String user);
 
+    boolean toggleOpenPhotoInSet(String setName, int photoId, String user);
+
 }

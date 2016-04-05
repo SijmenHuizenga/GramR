@@ -52,6 +52,9 @@ public class SetService extends AbstractService {
         return set;
     }
 
+    /**
+     * Verwijder een Photo uit een Set door een bepaalde Gebruiker.
+     */
     public void deletePhotoFromSet(String setName, int id, String user) throws IOException{
         Set theSet = setDAO.getSet(setName);
 
@@ -59,6 +62,31 @@ public class SetService extends AbstractService {
             throw new IllegalArgumentException("The user is not the owner of the set and so cannot delete a photo from it.");
 
         setDAO.deletePhotoFromSet(theSet.getName(), id);
+    }
+
+    /**
+     * Toggle het 'open' attribuut binnen de klasse PhotoPrivacy
+     */
+    public void toggleOpenPhotoInSet(String setName, int photoId, String user) throws IOException{
+        Set theSet = setDAO.getSet(setName);
+
+        if(!theSet.getOwner().equals(user))
+            throw new IllegalArgumentException("The user is not the owner of the set and so cannot set data in it.");
+
+        ArrayList<PhotoPrivacy> photos = photoDAO.getPhotosBySet(theSet.getName());
+        PhotoPrivacy thePhoto = findPhotoPrivacyInList(photos, photoId);
+        if(thePhoto == null)
+            throw new IllegalArgumentException("The given photo does not exist in this set.");
+
+        setDAO.savePhotoPrivacyInSet(theSet.getName(), thePhoto.getPhoto().getId(), thePhoto.toggle());
+    }
+
+    private PhotoPrivacy findPhotoPrivacyInList(ArrayList<PhotoPrivacy> list, int photoId){
+        for (PhotoPrivacy photoPrivacy : list) {
+            if(photoPrivacy.getPhoto().getId() == photoId)
+                return photoPrivacy;
+        }
+        return null;
     }
 
 }

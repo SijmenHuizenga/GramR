@@ -1,5 +1,6 @@
 package it.sijmen.gramr.set.data;
 
+import it.sijmen.gramr.common.pojo.PhotoPrivacy;
 import it.sijmen.gramr.common.pojo.Set;
 
 import java.io.IOException;
@@ -15,4 +16,7 @@ public interface SetDAO {
     Set getSet(String setName) throws IOException;
 
     void deletePhotoFromSet(String setName, int photoId) throws IOException;
+
+    void savePhotoPrivacyInSet(String setName, int photoId, boolean isOpen) throws IOException;
+
 }

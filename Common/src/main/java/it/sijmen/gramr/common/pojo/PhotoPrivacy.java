@@ -13,8 +13,8 @@ public class PhotoPrivacy {
         this.open = open;
     }
 
-    public void toggle(){
-        this.open = !this.open;
+    public boolean toggle(){
+        return this.open = !this.open;
     }
 
     public boolean isOpen() {

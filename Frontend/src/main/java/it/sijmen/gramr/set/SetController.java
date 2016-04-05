@@ -2,6 +2,7 @@ package it.sijmen.gramr.set;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import it.sijmen.gramr.common.pojo.PhotoPrivacy;
 import it.sijmen.gramr.common.pojo.Set;
 import it.sijmen.gramr.presentation.Controller;
 
@@ -53,7 +54,19 @@ public class SetController extends Controller{
     }
 
     private void doToglleOpen(Set set, String user) {
-        //todo
+        String photoToToggle = getParameter("toggleOpen");
+        if(photoToToggle == null)
+            return;
+
+        int id = Integer.valueOf(photoToToggle);
+
+        setModel.toggleOpenPhotoInSet(set.getName(), id, user);
+
+        //todo: dit zout automatisch gedaan kunnen worden?
+        PhotoPrivacy thePhoto = set.getPhoto(id);
+        if(thePhoto != null)
+            thePhoto.toggle();
+
     }
 
     private void doDellPhoto(Set set, String user) {
@@ -65,6 +78,7 @@ public class SetController extends Controller{
 
         setModel.deletePhotoFromSet(set.getName(), id, user);
 
+        //todo: dit kan toch automatoisch?
         set.removePhoto(id);
     }
 
