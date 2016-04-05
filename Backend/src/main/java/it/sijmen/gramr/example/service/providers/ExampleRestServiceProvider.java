@@ -21,7 +21,7 @@ public class ExampleRestServiceProvider extends ExampleServiceProvider{
     @Produces(MediaType.APPLICATION_JSON)
     public ExamplePojo getTheData() {
         try {
-            return super.getData();
+            return theService.getData();
         } catch (IOException e) {
             e.printStackTrace();
             return null;

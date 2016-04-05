@@ -37,7 +37,7 @@ public class ExampleHttpServiceProvider extends ExampleServiceProvider implement
     public void handle(HttpExchange httpExchange) throws IOException {
         String response;
         try{
-            response = this.getData().toString();
+            response = theService.getData().toString();
         }catch(IOException e){
             response = "Er is iets fout gegaan: " + e.getMessage();
         }

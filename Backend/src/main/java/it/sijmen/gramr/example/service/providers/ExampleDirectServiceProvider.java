@@ -10,10 +10,9 @@ import java.io.IOException;
  */
 public class ExampleDirectServiceProvider extends ExampleServiceProvider {
 
-    @Override
     public ExamplePojo getData() {
         try {
-            return super.getData();
+            return theService.getData();
         } catch (IOException e) {
             e.printStackTrace();
             return null;

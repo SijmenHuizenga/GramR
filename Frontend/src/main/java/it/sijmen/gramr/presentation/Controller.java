@@ -35,6 +35,18 @@ public abstract class Controller extends HttpServlet {
         req.getRequestDispatcher(pagesFolder + jspName + jspExtention).include(req, resp);
     }
 
+    protected String getParameter(String key){
+        Map<String, String[]> parameters = reqParamsProvider.get();
+        if(!parameters.containsKey(key))
+            return null;
+        String[] vals = parameters.get(key);
+        if(vals.length == 0)
+            return null;
+        if(vals[0] == null || vals[0].isEmpty())
+            return null;
+        return vals[0];
+    }
+
     private Cookie getUserCookie(HttpServletRequest req){
         for (Cookie cookie : req.getCookies()) {
             if(cookie.getName().equals(USER_COOKIE_KEY))

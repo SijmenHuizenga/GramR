@@ -2,6 +2,7 @@ package it.sijmen.gramr.common.pojo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Sijmen on 4-4-2016.
@@ -26,14 +27,12 @@ public class Set {
         photos[photos.length-1] = new PhotoPrivacy(photo, open);
     }
 
-    public ArrayList<Photo> getPhotos(boolean includeClosed){
-        ArrayList<Photo> output = new ArrayList<>();
-        for(PhotoPrivacy photo : this.photos){
-            if(!includeClosed && !photo.isOpen())
-                continue;
-            output.add(photo.getPhoto());
-        }
-        return output;
+    public PhotoPrivacy[] getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(ArrayList<PhotoPrivacy> photos) {
+        this.photos = photos.toArray(new PhotoPrivacy[photos.size()]);
     }
 
     public void setName(String name) {
@@ -48,7 +47,21 @@ public class Set {
         return owner;
     }
 
-    public int getPhotoAmount(boolean includeClosed){
-        return getPhotos(includeClosed).size();
+    public int getPhotoAmount(){
+        return getPhotos().length;
+    }
+
+    public void removePhoto(int id) {
+        List<PhotoPrivacy> list = new ArrayList<PhotoPrivacy>(Arrays.asList(photos));
+        int toDel = -1;
+        for (int i = 0; i < list.size(); i++) {
+            PhotoPrivacy photoPrivacy = list.get(i);
+            if (photoPrivacy.getPhoto().getId() == id)
+                toDel = i;
+        }
+        if(toDel == -1)
+            return;
+        list.remove(toDel);
+        photos = list.toArray(new PhotoPrivacy[list.size()]);
     }
 }

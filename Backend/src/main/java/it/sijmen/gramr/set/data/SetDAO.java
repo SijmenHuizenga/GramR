@@ -12,4 +12,7 @@ public interface SetDAO {
 
     ArrayList<Set> getSetsByUser(String user) throws IOException;
 
+    Set getSet(String setName) throws IOException;
+
+    void deletePhotoFromSet(String setName, int photoId) throws IOException;
 }

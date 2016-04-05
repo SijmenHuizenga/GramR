@@ -2,7 +2,6 @@ package it.sijmen.gramr.set.data.dao;
 
 import com.google.inject.Inject;
 
-import it.sijmen.gramr.common.pojo.ExamplePojo;
 import it.sijmen.gramr.common.pojo.Set;
 import it.sijmen.gramr.data.jdbc.JdbcDAO;
 import it.sijmen.gramr.data.jdbc.JdbcDatabaseConnectionFactory;
@@ -50,6 +49,42 @@ public class SetJDBCDAO extends JdbcDAO implements SetDAO {
             statement.close();
 
             return sets;
+        } catch (IOException | SQLException e) {
+            throw new IOException("Kon POJO niet ophalen uit de database: " + e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public Set getSet(String setName) throws IOException {
+        Connection connection;
+        try {
+            connection = getConnection();
+
+            //todo: prepared statement
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM `Set` WHERE `name` = '"+setName+"'");
+            ResultSet set = statement.executeQuery();
+
+            while(set.next())
+                return new Set(set.getString("owner"), set.getString("name"));
+
+            set.close();
+            statement.close();
+        } catch (IOException | SQLException e) {
+            throw new IOException("Kon POJO niet ophalen uit de database: " + e.getMessage(), e);
+        }
+        return null;
+    }
+
+    @Override
+    public void deletePhotoFromSet(String setName, int photoId) throws IOException {
+        Connection connection;
+        try {
+            connection = getConnection();
+
+            //todo: prepared statement
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM PhotoPrivacy WHERE set_name = '" + setName + "' AND photo_id = '" + photoId + "'");
+            statement.executeUpdate();
+            statement.close();
         } catch (IOException | SQLException e) {
             throw new IOException("Kon POJO niet ophalen uit de database: " + e.getMessage(), e);
         }

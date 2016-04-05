@@ -10,8 +10,15 @@ import java.io.IOException;
  */
 public class SetDirectServiceProvider extends SetServiceProvider {
 
-    @Override
     public Set[] getSetsByUser(String user) throws IOException {
-        return super.getSetsByUser(user);
+        return theService.getSetsByUser(user);
+    }
+
+    public Set getSet(String name, String user) throws IOException {
+        return theService.getSet(name, user);
+    }
+
+    public void deletePhotoFromSet(String setName, int photoId, String user) throws IOException{
+        theService.deletePhotoFromSet(setName, photoId, user);
     }
 }

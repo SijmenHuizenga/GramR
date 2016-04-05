@@ -20,4 +20,28 @@ public class SetDirectModel implements SetModel {
             return new Set[0];
         }
     }
+
+    @Override
+    public Set getSet(String name, String user) {
+        //deze moet elke keer opnieuw ivm dichten van de database connectie.
+        SetDirectServiceProvider provider = new SetDirectServiceProvider();
+        try {
+            return provider.getSet(name, user);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public boolean deletePhotoFromSet(String setName, int photoId, String user) {
+        SetDirectServiceProvider provider = new SetDirectServiceProvider();
+        try {
+            provider.deletePhotoFromSet(setName, photoId, user);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

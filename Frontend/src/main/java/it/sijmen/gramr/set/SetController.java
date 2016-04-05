@@ -2,37 +2,70 @@ package it.sijmen.gramr.set;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import it.sijmen.gramr.common.pojo.Photo;
 import it.sijmen.gramr.common.pojo.Set;
 import it.sijmen.gramr.presentation.Controller;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Map;
 
 /**
- * Created by Sinius on 4-4-2016.
+ * Created by Sinius on 5-4-2016.
  */
 @Singleton
-public class SetController extends Controller {
+public class SetController extends Controller{
 
     @Inject
     private SetModel setModel;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Map<String, String[]> parameters = reqParamsProvider.get();
-
         String user = getUser(req);
-        if(user == null)
-            resp.sendRedirect("/");
+        String setName = getParameter("name");
 
-        req.setAttribute("setList", setModel.getSetsByUser(user));
+        if(user == null || setName == null){
+            resp.sendRedirect("/");
+            return;
+        }
+
+        Set set = setModel.getSet(setName, user);
+
+        if(set == null){
+            resp.sendRedirect("/");
+            return;
+        }
+
+        boolean canEdit = user.equals(set.getOwner());
+
+        if(canEdit){
+            doDellPhoto(set, user);
+            doToglleOpen(set, user);
+        }
+
+
+        req.setAttribute("set", set);
         req.setAttribute("user", user);
 
-        show(req, resp, "SetsView");
+        req.setAttribute("showEditThings", canEdit);
+
+        show(req, resp, "SetView");
     }
+
+    private void doToglleOpen(Set set, String user) {
+        //todo
+    }
+
+    private void doDellPhoto(Set set, String user) {
+        String photoToDel = getParameter("delPhoto");
+        if(photoToDel == null)
+            return;
+
+        int id = Integer.valueOf(photoToDel);
+
+        setModel.deletePhotoFromSet(set.getName(), id, user);
+
+        set.removePhoto(id);
+    }
+
 }
