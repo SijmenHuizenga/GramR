@@ -24,7 +24,7 @@ public class PhotoRestServiceProvider extends PhotoServiceProvider{
     public PojoResponse getAllPhotos() {
         try {
             return new SuccessResponse(theService.getAllPhotos());
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return new ErrorResponse(e.getMessage());
         }
@@ -38,7 +38,7 @@ public class PhotoRestServiceProvider extends PhotoServiceProvider{
 
         try {
             return new SuccessResponse(theService.getPhotoById(id));
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return new ErrorResponse(e.getMessage());
         }

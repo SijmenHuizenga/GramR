@@ -22,23 +22,11 @@ import java.io.IOException;
 public class FilterRestServiceProvider extends FilterServiceProvider {
 
     @Inject
-    FilterFactory filterFactory;
+    private FilterFactory filterFactory;
 
     @GET
-    @Path("/{photoid}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public PojoResponse getPhotoFilter(
-            @PathParam("photoid") int photoId){
-
-        try {
-            return new SuccessResponse(theService.getPhotoFilter(photoId));
-        } catch (IOException e) {
-            e.printStackTrace();
-            return new ErrorResponse(e.getMessage());
-        }
-    }
-
     @Path("/set/{photoid}/{user}/{filterName}/{filterData}")
+    @Produces(MediaType.APPLICATION_JSON)
     public PojoResponse setPhotoFilter(
             @PathParam("photoid") int photoId,
             @PathParam("filterName") String filterName,
@@ -49,7 +37,21 @@ public class FilterRestServiceProvider extends FilterServiceProvider {
         try {
             theService.setPhotoFilter(photoId, theFilter, user);
             return new SuccessResponse();
-        } catch (IOException e) {
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ErrorResponse(e.getMessage());
+        }
+    }
+
+    @GET
+    @Path("/{photoid}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public PojoResponse getPhotoFilter(
+            @PathParam("photoid") int photoId){
+
+        try {
+            return new SuccessResponse(theService.getPhotoFilter(photoId));
+        } catch (Exception e) {
             e.printStackTrace();
             return new ErrorResponse(e.getMessage());
         }

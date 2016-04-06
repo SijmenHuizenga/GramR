@@ -1,9 +1,9 @@
 package it.sijmen.gramr.set.service;
 
 import com.google.inject.Inject;
-import it.sijmen.gramr.common.service.Photo;
-import it.sijmen.gramr.common.service.PhotoPrivacy;
-import it.sijmen.gramr.common.service.Set;
+import it.sijmen.gramr.common.pojo.Photo;
+import it.sijmen.gramr.common.pojo.PhotoPrivacy;
+import it.sijmen.gramr.common.pojo.Set;
 import it.sijmen.gramr.common.service.AbstractService;
 import it.sijmen.gramr.photo.data.PhotoDAO;
 import it.sijmen.gramr.set.data.SetDAO;
@@ -43,6 +43,9 @@ public class SetService extends AbstractService {
      */
     public Set getSet(String name, String user) throws IOException{
         Set set = setDAO.getSet(name);
+
+        if(set == null)
+            throw new IOException("The given set does not exist");
 
         ArrayList<PhotoPrivacy> photos = photoDAO.getPhotosBySet(set.getName());
         for (PhotoPrivacy photo : photos) {

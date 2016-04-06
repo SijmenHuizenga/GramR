@@ -19,6 +19,20 @@
                 </div>
                 <button type="submit" class="btn btn-default">Opslaan</button>
             </form>
+            <hr>
+            <h2>REST backend tests:</h2>
+            <ul>
+                <li><a target="_blank" href="http://localhost:8092/rest/exampledata">Example Service</a></li>
+                <li><a target="_blank" href="http://localhost:8092/rest/filter/1">Filter Get</a></li>
+                <li><a target="_blank" href="http://localhost:8092/rest/filter/set/1/Sijmen/null/somedata">Filter Set</a></li>
+                <li><a target="_blank" href="http://localhost:8092/rest/photo/getall">Photo getAll</a></li>
+                <li><a target="_blank" href="http://localhost:8092/rest/photo/1">Photo Get</a></li>
+                <li><a target="_blank" href="http://localhost:8092/rest/set/get/Sijmen/Time">Set Get By name</a></li>
+                <li><a target="_blank" href="http://localhost:8092/rest/set/list/Sijmen">Set List of User</a></li>
+                <li><a target="_blank" href="http://localhost:8092/rest/set/deletephoto/Sijmen/Time/1">Set Del Photo</a></li>
+                <li><a target="_blank" href="http://localhost:8092/rest/set/addphoto/Sijmen/Time/1">Set Add Photo</a></li>
+                <li><a target="_blank" href="http://localhost:8092/rest/set/toggleopen/Sijmen/Time/1">Set Toggle Open Photo</a></li>
+            </ul>
         </div>
     </div>
 

@@ -19,29 +19,29 @@ import java.io.IOException;
 public class SetRestServiceProvider extends SetServiceProvider {
 
     @GET
-    @Path("/get/{user}/{setid}")
+    @Path("/get/{user}/{setName}")
     @Produces(MediaType.APPLICATION_JSON)
     public PojoResponse getSet(
-            @PathParam("setid") String name,
+            @PathParam("setName") String setName,
             @PathParam("user") String user) {
 
         try {
-            return new SuccessResponse(theService.getSet(name, user));
-        } catch (IOException e) {
+            return new SuccessResponse(theService.getSet(setName, user));
+        } catch (Exception e) {
             e.printStackTrace();
             return new ErrorResponse(e.getMessage());
         }
     }
 
     @GET
-    @Path("/get/{user}")
+    @Path("/list/{user}")
     @Produces(MediaType.APPLICATION_JSON)
     public PojoResponse getSetsByUser(
             @PathParam("user") String user) {
 
         try {
             return new SuccessResponse(theService.getSetsByUser(user));
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return new ErrorResponse(e.getMessage());
         }
@@ -58,7 +58,7 @@ public class SetRestServiceProvider extends SetServiceProvider {
         try {
             theService.deletePhotoFromSet(setName, photoId, user);
             return new SuccessResponse();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return new ErrorResponse(e.getMessage());
         }
@@ -74,7 +74,7 @@ public class SetRestServiceProvider extends SetServiceProvider {
         try {
             theService.addPhotoToSet(setName, photoId, user);
             return new SuccessResponse();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return new ErrorResponse(e.getMessage());
         }
@@ -90,7 +90,7 @@ public class SetRestServiceProvider extends SetServiceProvider {
         try {
             theService.toggleOpenPhotoInSet(setName, photoId, user);
             return new SuccessResponse();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return new ErrorResponse(e.getMessage());
         }

@@ -24,7 +24,7 @@ public class ExampleRestServiceProvider extends ExampleServiceProvider{
     public PojoResponse getTheData() {
         try {
             return new SuccessResponse(theService.getData());
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return new ErrorResponse(e.getMessage());
         }
