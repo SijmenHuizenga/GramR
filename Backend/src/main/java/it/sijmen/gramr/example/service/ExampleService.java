@@ -2,8 +2,8 @@ package it.sijmen.gramr.example.service;
 
 import com.google.inject.Inject;
 import it.sijmen.gramr.common.pojo.ExamplePojo;
+import it.sijmen.gramr.common.service.AbstractService;
 import it.sijmen.gramr.example.data.ExampleDAO;
-import it.sijmen.gramr.service.AbstractService;
 
 import java.io.IOException;
 import java.util.ArrayList;

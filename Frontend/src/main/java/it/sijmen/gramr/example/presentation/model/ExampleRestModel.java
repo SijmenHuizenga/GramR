@@ -1,0 +1,32 @@
+package it.sijmen.gramr.example.presentation.model;
+
+import it.sijmen.gramr.common.pojo.ExamplePojo;
+import it.sijmen.gramr.common.presentation.AbstractModel;
+import it.sijmen.gramr.example.presentation.ExampleModel;
+
+import javax.ws.rs.client.*;
+import javax.ws.rs.core.MediaType;
+
+/**
+ * Created by Sijmen on 4-4-2016.
+ */
+public class ExampleRestModel extends AbstractModel implements ExampleModel {
+
+    //todo:inject
+    public static final String JSON_SERIALIZER = "jersey.config.server.provider.packages";
+    public static final String JACKSON_JSON_SERIALIZER = "com.fasterxml.jackson.jaxrs.json;it.sijmen.gramr";
+
+    @Override
+    public String getData() {
+        Client client = ClientBuilder.newClient();
+        WebTarget target = client.target("http://localhost:8092/rest");
+        target = target.property(JSON_SERIALIZER, JACKSON_JSON_SERIALIZER);
+        target = target.path("exampledata");
+
+
+        Invocation.Builder builder = target.request(MediaType.APPLICATION_JSON);
+        ExamplePojo pojo = builder.get(ExamplePojo.class);
+
+        return pojo.getData();
+    }
+}

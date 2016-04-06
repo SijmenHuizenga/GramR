@@ -1,14 +1,9 @@
 package it.sijmen.gramr.set.data.dao;
 
-import com.google.inject.Inject;
-
 import it.sijmen.gramr.common.pojo.PhotoPrivacy;
 import it.sijmen.gramr.common.pojo.Set;
-import it.sijmen.gramr.data.jdbc.JdbcDAO;
-import it.sijmen.gramr.data.jdbc.JdbcDatabaseConnectionFactory;
+import it.sijmen.gramr.common.data.jdbc.JdbcDAO;
 import it.sijmen.gramr.set.data.SetDAO;
-
-import javax.annotation.Nullable;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -21,11 +16,6 @@ import java.util.ArrayList;
  * Created by Sinius on 4-4-2016.
  */
 public class SetJDBCDAO extends JdbcDAO implements SetDAO {
-
-    @Inject
-    public SetJDBCDAO(@Nullable JdbcDatabaseConnectionFactory connectionFactory) {
-        super(connectionFactory);
-    }
 
     /**
      * Loads all the sets with the given owner.

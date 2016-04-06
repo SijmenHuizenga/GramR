@@ -1,6 +1,6 @@
 package it.sijmen.gramr.photo.service;
 
-import it.sijmen.gramr.service.AbstractServiceProvider;
+import it.sijmen.gramr.common.service.AbstractServiceProvider;
 
 /**
  * Created by Sinius on 5-4-2016.

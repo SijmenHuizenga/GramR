@@ -3,9 +3,9 @@ package it.sijmen.gramr.filter.service;
 import com.google.inject.Inject;
 import it.sijmen.gramr.common.pojo.Filter;
 import it.sijmen.gramr.common.pojo.Photo;
+import it.sijmen.gramr.common.service.AbstractService;
 import it.sijmen.gramr.filter.data.FilterDAO;
 import it.sijmen.gramr.photo.data.PhotoDAO;
-import it.sijmen.gramr.service.AbstractService;
 
 import java.io.IOException;
 

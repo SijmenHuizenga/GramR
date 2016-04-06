@@ -1,6 +1,6 @@
 package it.sijmen.gramr.set.service;
 
-import it.sijmen.gramr.service.AbstractServiceProvider;
+import it.sijmen.gramr.common.service.AbstractServiceProvider;
 
 /**
  * Created by Sinius on 4-4-2016.

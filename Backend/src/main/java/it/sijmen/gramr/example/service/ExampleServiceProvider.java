@@ -1,6 +1,6 @@
 package it.sijmen.gramr.example.service;
 
-import it.sijmen.gramr.service.AbstractServiceProvider;
+import it.sijmen.gramr.common.service.AbstractServiceProvider;
 
 /**
  * Created by Sijmen on 2-4-2016.

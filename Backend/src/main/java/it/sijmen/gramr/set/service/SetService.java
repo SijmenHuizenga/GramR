@@ -4,8 +4,8 @@ import com.google.inject.Inject;
 import it.sijmen.gramr.common.pojo.Photo;
 import it.sijmen.gramr.common.pojo.PhotoPrivacy;
 import it.sijmen.gramr.common.pojo.Set;
+import it.sijmen.gramr.common.service.AbstractService;
 import it.sijmen.gramr.photo.data.PhotoDAO;
-import it.sijmen.gramr.service.AbstractService;
 import it.sijmen.gramr.set.data.SetDAO;
 
 import java.io.IOException;

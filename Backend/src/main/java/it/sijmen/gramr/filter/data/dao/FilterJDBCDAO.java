@@ -2,29 +2,21 @@ package it.sijmen.gramr.filter.data.dao;
 
 import com.google.inject.Inject;
 import it.sijmen.gramr.common.pojo.Filter;
-import it.sijmen.gramr.common.pojo.Photo;
 import it.sijmen.gramr.common.pojo.filters.*;
-import it.sijmen.gramr.data.jdbc.JdbcDAO;
-import it.sijmen.gramr.data.jdbc.JdbcDatabaseConnectionFactory;
+import it.sijmen.gramr.common.data.jdbc.JdbcDAO;
+import it.sijmen.gramr.common.data.jdbc.JdbcDatabaseConnectionFactory;
 import it.sijmen.gramr.filter.data.FilterDAO;
 
 import javax.annotation.Nullable;
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 /**
  * Created by Sijmen on 5-4-2016.
  */
 public class FilterJDBCDAO extends JdbcDAO implements FilterDAO {
-
-    @Inject
-    public FilterJDBCDAO(@Nullable JdbcDatabaseConnectionFactory connectionFactory) {
-        super(connectionFactory);
-    }
 
     @Override
     public Filter getPhotoFilter(int photoId) throws IOException {
