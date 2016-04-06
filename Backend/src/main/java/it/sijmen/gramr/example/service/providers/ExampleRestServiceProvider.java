@@ -1,6 +1,8 @@
 package it.sijmen.gramr.example.service.providers;
 
-import it.sijmen.gramr.common.pojo.ExamplePojo;
+import it.sijmen.gramr.common.service.PojoResponse;
+import it.sijmen.gramr.common.service.responses.ErrorResponse;
+import it.sijmen.gramr.common.service.responses.SuccessResponse;
 import it.sijmen.gramr.example.service.ExampleServiceProvider;
 
 import javax.inject.Singleton;
@@ -19,12 +21,12 @@ public class ExampleRestServiceProvider extends ExampleServiceProvider{
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public ExamplePojo getTheData() {
+    public PojoResponse getTheData() {
         try {
-            return theService.getData();
+            return new SuccessResponse(theService.getData());
         } catch (IOException e) {
             e.printStackTrace();
-            return null;
+            return new ErrorResponse(e.getMessage());
         }
     }
 }

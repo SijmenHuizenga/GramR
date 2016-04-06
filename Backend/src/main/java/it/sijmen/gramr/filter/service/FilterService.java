@@ -23,7 +23,7 @@ public class FilterService extends AbstractService {
     public Filter getPhotoFilter(int photoId) throws IOException {
         Photo photo = photoDAO.getPhoto(photoId);
         if (photo == null)
-            throw new IllegalArgumentException("Could not found photo.");
+            throw new IOException("Could not found photo.");
 
         return filterDAO.getPhotoFilter(photoId);
     }
@@ -31,10 +31,10 @@ public class FilterService extends AbstractService {
     public void setPhotoFilter(int photoId, Filter filter, String user) throws IOException {
         Photo photo = photoDAO.getPhoto(photoId);
         if (photo == null)
-            throw new IllegalArgumentException("Could not found photo.");
+            throw new IOException("Could not found photo.");
 
         if(!photo.getCreator().equals(user))
-            throw new IllegalArgumentException("The user is not the owner of the photo and so cannot set data in it.");
+            throw new IOException("The user is not the owner of the photo and so cannot set data in it.");
 
         photo.setFilter(filter);
         filterDAO.setPhotoFilter(photo.getId(), filter);

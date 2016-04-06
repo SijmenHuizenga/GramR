@@ -1,9 +1,9 @@
 package it.sijmen.gramr.set.service;
 
 import com.google.inject.Inject;
-import it.sijmen.gramr.common.pojo.Photo;
-import it.sijmen.gramr.common.pojo.PhotoPrivacy;
-import it.sijmen.gramr.common.pojo.Set;
+import it.sijmen.gramr.common.service.Photo;
+import it.sijmen.gramr.common.service.PhotoPrivacy;
+import it.sijmen.gramr.common.service.Set;
 import it.sijmen.gramr.common.service.AbstractService;
 import it.sijmen.gramr.photo.data.PhotoDAO;
 import it.sijmen.gramr.set.data.SetDAO;
@@ -60,7 +60,7 @@ public class SetService extends AbstractService {
         Set theSet = setDAO.getSet(setName);
 
         if(theSet == null || !theSet.getOwner().equals(user))
-            throw new IllegalArgumentException("The user is not the owner of the set and so cannot delete a photo from it.");
+            throw new IOException("The user is not the owner of the set and so cannot delete a photo from it.");
 
         setDAO.deletePhotoFromSet(theSet.getName(), id);
     }
@@ -72,12 +72,12 @@ public class SetService extends AbstractService {
         Set theSet = setDAO.getSet(setName);
 
         if(theSet == null || !theSet.getOwner().equals(user))
-            throw new IllegalArgumentException("The user is not the owner of the set and so cannot set data in it.");
+            throw new IOException("The user is not the owner of the set and so cannot set data in it.");
 
         ArrayList<PhotoPrivacy> photos = photoDAO.getPhotosBySet(theSet.getName());
         PhotoPrivacy thePhoto = findPhotoPrivacyInList(photos, photoId);
         if(thePhoto == null)
-            throw new IllegalArgumentException("The given photo does not exist in this set.");
+            throw new IOException("The given photo does not exist in this set.");
 
         thePhoto.toggleOpen();
 
@@ -91,11 +91,11 @@ public class SetService extends AbstractService {
         Set theSet = setDAO.getSet(setName);
 
         if(theSet == null || !theSet.getOwner().equals(user))
-            throw new IllegalArgumentException("The user is not the owner of the set and so cannot set data in it.");
+            throw new IOException("The user is not the owner of the set and so cannot set data in it.");
 
         Photo thePhoto = photoDAO.getPhoto(photoId);
         if(thePhoto == null)
-            throw new IllegalArgumentException("The photo could not be found.");
+            throw new IOException("The photo could not be found.");
 
         setDAO.savePhotoPrivacyInSet(theSet.getName(), new PhotoPrivacy(thePhoto, false));
 

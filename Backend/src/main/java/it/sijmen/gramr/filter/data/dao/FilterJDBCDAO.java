@@ -87,7 +87,7 @@ public class FilterJDBCDAO extends JdbcDAO implements FilterDAO {
         else if(filter instanceof GrayFilter)
             saveGrayFilter(photoId, (GrayFilter)filter);
         else
-            throw new IllegalArgumentException("Unsported Filter type.");
+            throw new IOException("Unsported Filter type.");
     }
 
     /**

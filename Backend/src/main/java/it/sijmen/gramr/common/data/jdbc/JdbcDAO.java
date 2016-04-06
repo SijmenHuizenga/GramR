@@ -11,7 +11,7 @@ import java.sql.SQLException;
 /**
  * Created by Sijmen on 4-4-2016.
  */
-public class JdbcDAO extends AbstractDAO {
+public abstract class JdbcDAO extends AbstractDAO {
 
     @Inject
     private JdbcDatabaseConnectionFactory connectionFactory;
