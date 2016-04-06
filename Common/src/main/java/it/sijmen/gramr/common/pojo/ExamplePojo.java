@@ -31,4 +31,22 @@ public class ExamplePojo {
     public void setData(String data) {
         this.data = data;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ExamplePojo that = (ExamplePojo) o;
+
+        return getId() == that.getId() && !(getData() != null ? !getData().equals(that.getData()) : that.getData() != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId();
+        result = 31 * result + (getData() != null ? getData().hashCode() : 0);
+        return result;
+    }
 }

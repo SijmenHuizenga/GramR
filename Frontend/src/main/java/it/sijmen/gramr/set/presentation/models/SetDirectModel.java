@@ -1,5 +1,6 @@
 package it.sijmen.gramr.set.presentation.models;
 
+import com.google.inject.Inject;
 import it.sijmen.gramr.common.pojo.Set;
 import it.sijmen.gramr.common.presentation.AbstractModel;
 import it.sijmen.gramr.set.presentation.SetModel;
@@ -13,13 +14,8 @@ import java.io.IOException;
 public class SetDirectModel extends AbstractModel implements SetModel {
 
     //todo: is het wel goed dat deze open wordt gehouden de heel tijd? Ookal zijn er geen requests?
-    /**
-     * Kan niet worden Injected omdat de ServiceProviders een eigen injector hebben.
-     *
-     * Bij een @Inject gaat Guice proberen ook de childs te injecten, maar dat wordt
-     * binnen de serviceProvder zelf geregeld.
-     */
-    SetDirectServiceProvider provider = new SetDirectServiceProvider();
+    @Inject
+    SetDirectServiceProvider provider;
 
     @Override
     public Set[] getSetsByUser(String username) {

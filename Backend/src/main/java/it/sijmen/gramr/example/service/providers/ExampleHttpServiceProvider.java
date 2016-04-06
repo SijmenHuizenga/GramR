@@ -3,7 +3,9 @@ package it.sijmen.gramr.example.service.providers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
+import it.sijmen.gramr.example.service.ExampleService;
 import it.sijmen.gramr.example.service.ExampleServiceProvider;
+import it.sijmen.gramr.filter.service.FilterService;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -16,8 +18,11 @@ import java.net.InetSocketAddress;
  */
 public class ExampleHttpServiceProvider extends ExampleServiceProvider implements HttpHandler{
 
+    protected ExampleService theService;
+
     public ExampleHttpServiceProvider() throws IOException {
         super();
+        this.theService = createInjector().getInstance(ExampleService.class);
         //todo: deze variabele dynamisch maken
         HttpServer server = HttpServer.create(new InetSocketAddress(1234), 0);
         server.createContext("/exampledata", this);

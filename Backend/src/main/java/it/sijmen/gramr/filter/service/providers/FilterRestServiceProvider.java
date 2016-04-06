@@ -6,6 +6,7 @@ import it.sijmen.gramr.common.pojo.filters.FilterFactory;
 import it.sijmen.gramr.common.service.PojoResponse;
 import it.sijmen.gramr.common.service.responses.ErrorResponse;
 import it.sijmen.gramr.common.service.responses.SuccessResponse;
+import it.sijmen.gramr.filter.service.FilterService;
 import it.sijmen.gramr.filter.service.FilterServiceProvider;
 
 import javax.ws.rs.GET;
@@ -20,6 +21,12 @@ import java.io.IOException;
  */
 @Path("/filter")
 public class FilterRestServiceProvider extends FilterServiceProvider {
+
+    protected FilterService theService;
+
+    public FilterRestServiceProvider() {
+        this.theService = createInjector().getInstance(FilterService.class);
+    }
 
     @Inject
     private FilterFactory filterFactory;

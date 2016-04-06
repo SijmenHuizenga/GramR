@@ -3,6 +3,7 @@ package it.sijmen.gramr.set.service.providers;
 import it.sijmen.gramr.common.service.PojoResponse;
 import it.sijmen.gramr.common.service.responses.ErrorResponse;
 import it.sijmen.gramr.common.service.responses.SuccessResponse;
+import it.sijmen.gramr.set.service.SetService;
 import it.sijmen.gramr.set.service.SetServiceProvider;
 
 import javax.ws.rs.GET;
@@ -17,6 +18,12 @@ import java.io.IOException;
  */
 @Path("/set")
 public class SetRestServiceProvider extends SetServiceProvider {
+
+    protected SetService theService;
+
+    public SetRestServiceProvider() {
+        this.theService = createInjector().getInstance(SetService.class);
+    }
 
     @GET
     @Path("/get/{user}/{setName}")

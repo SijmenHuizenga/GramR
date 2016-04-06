@@ -3,6 +3,8 @@ package it.sijmen.gramr.photo.service.providers;
 import it.sijmen.gramr.common.service.PojoResponse;
 import it.sijmen.gramr.common.service.responses.ErrorResponse;
 import it.sijmen.gramr.common.service.responses.SuccessResponse;
+import it.sijmen.gramr.filter.service.FilterService;
+import it.sijmen.gramr.photo.service.PhotoService;
 import it.sijmen.gramr.photo.service.PhotoServiceProvider;
 
 import javax.ws.rs.GET;
@@ -17,6 +19,16 @@ import java.io.IOException;
  */
 @Path("/photo")
 public class PhotoRestServiceProvider extends PhotoServiceProvider{
+
+    protected PhotoService theService;
+
+    public PhotoRestServiceProvider() {
+        this.theService = createInjector().getInstance(PhotoService.class);
+    }
+
+    public PhotoRestServiceProvider(PhotoService theService) {
+        this.theService = theService;
+    }
 
     @GET
     @Path("/getall")

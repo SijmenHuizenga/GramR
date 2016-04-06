@@ -3,6 +3,7 @@ package it.sijmen.gramr.example.service.providers;
 import it.sijmen.gramr.common.service.PojoResponse;
 import it.sijmen.gramr.common.service.responses.ErrorResponse;
 import it.sijmen.gramr.common.service.responses.SuccessResponse;
+import it.sijmen.gramr.example.service.ExampleService;
 import it.sijmen.gramr.example.service.ExampleServiceProvider;
 
 import javax.inject.Singleton;
@@ -10,7 +11,6 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import java.io.IOException;
 
 /**
  * Created by Sijmen on 4-4-2016.
@@ -18,6 +18,12 @@ import java.io.IOException;
 @Singleton
 @Path("/exampledata")
 public class ExampleRestServiceProvider extends ExampleServiceProvider{
+
+    protected ExampleService theService;
+
+    public ExampleRestServiceProvider() {
+        this.theService = createInjector().getInstance(ExampleService.class);
+    }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -29,4 +35,5 @@ public class ExampleRestServiceProvider extends ExampleServiceProvider{
             return new ErrorResponse(e.getMessage());
         }
     }
+
 }

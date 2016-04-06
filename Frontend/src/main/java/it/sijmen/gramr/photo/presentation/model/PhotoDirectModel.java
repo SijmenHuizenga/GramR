@@ -1,5 +1,6 @@
 package it.sijmen.gramr.photo.presentation.model;
 
+import com.google.inject.Inject;
 import it.sijmen.gramr.common.pojo.Filter;
 import it.sijmen.gramr.common.pojo.Photo;
 import it.sijmen.gramr.common.presentation.AbstractModel;
@@ -14,15 +15,11 @@ import java.io.IOException;
  */
 public class PhotoDirectModel extends AbstractModel implements PhotoModel {
 
-    /**
-     * Kan niet worden Injected omdat de ServiceProviders een eigen injector hebben.
-     *
-     * Bij een @Inject gaat Guice proberen ook de childs te injecten, maar dat wordt
-     * binnen de serviceProvder zelf geregeld.
-     */
-    PhotoDirectServiceProvider photoProvider = new PhotoDirectServiceProvider();
+    @Inject
+    PhotoDirectServiceProvider photoProvider;
 
-    FilterDirectServiceProvider filterProvider = new FilterDirectServiceProvider();
+    @Inject
+    FilterDirectServiceProvider filterProvider;
 
     @Override
     public Photo[] getAllPhotos() {

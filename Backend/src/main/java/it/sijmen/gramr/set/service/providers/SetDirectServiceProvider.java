@@ -1,6 +1,7 @@
 package it.sijmen.gramr.set.service.providers;
 
 import it.sijmen.gramr.common.pojo.Set;
+import it.sijmen.gramr.set.service.SetService;
 import it.sijmen.gramr.set.service.SetServiceProvider;
 
 import java.io.IOException;
@@ -9,6 +10,12 @@ import java.io.IOException;
  * Created by Sinius on 4-4-2016.
  */
 public class SetDirectServiceProvider extends SetServiceProvider {
+
+    protected SetService theService;
+
+    public SetDirectServiceProvider() {
+        this.theService = createInjector().getInstance(SetService.class);
+    }
 
     public Set[] getSetsByUser(String user) throws IOException {
         return theService.getSetsByUser(user);
@@ -29,4 +36,5 @@ public class SetDirectServiceProvider extends SetServiceProvider {
     public void addPhotoToSet(String setName, int photoId, String user) throws IOException {
         theService.addPhotoToSet(setName, photoId, user);
     }
+
 }
