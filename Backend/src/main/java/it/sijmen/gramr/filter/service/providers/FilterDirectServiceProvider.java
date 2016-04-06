@@ -7,7 +7,7 @@ import it.sijmen.gramr.filter.service.FilterServiceProvider;
 import java.io.IOException;
 
 /**
- * Created by Sinius on 5-4-2016.
+ * Created by Sijmen on 5-4-2016.
  */
 public class FilterDirectServiceProvider extends FilterServiceProvider {
 

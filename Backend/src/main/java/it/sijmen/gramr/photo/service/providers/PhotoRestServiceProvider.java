@@ -15,7 +15,7 @@ import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 
 /**
- * Created by Sinius on 6-4-2016.
+ * Created by Sijmen on 6-4-2016.
  */
 @Path("/photo")
 public class PhotoRestServiceProvider extends PhotoServiceProvider{

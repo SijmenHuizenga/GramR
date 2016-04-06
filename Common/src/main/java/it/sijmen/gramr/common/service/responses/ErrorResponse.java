@@ -3,7 +3,7 @@ package it.sijmen.gramr.common.service.responses;
 import it.sijmen.gramr.common.service.PojoResponse;
 
 /**
- * Created by Sinius on 6-4-2016.
+ * Created by Sijmen on 6-4-2016.
  */
 public class ErrorResponse extends PojoResponse {
 

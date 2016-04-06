@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * Created by Sinius on 4-4-2016.
+ * Created by Sijmen on 4-4-2016.
  */
 public class SetJDBCDAO extends JdbcDAO implements SetDAO {
 

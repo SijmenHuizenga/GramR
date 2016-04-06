@@ -4,7 +4,7 @@ import it.sijmen.gramr.common.pojo.Filter;
 import it.sijmen.gramr.common.pojo.Photo;
 
 /**
- * Created by Sinius on 5-4-2016.
+ * Created by Sijmen on 5-4-2016.
  */
 public interface PhotoModel {
 

@@ -3,7 +3,7 @@ package it.sijmen.gramr.test.service.mock;
 import java.util.Random;
 
 /**
- * Created by Sinius on 6-4-2016.
+ * Created by Sijmen on 6-4-2016.
  */
 public class MockRandom extends Random {
 

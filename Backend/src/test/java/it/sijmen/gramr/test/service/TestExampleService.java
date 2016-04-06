@@ -17,7 +17,7 @@ import java.util.Random;
 import static org.junit.Assert.*;
 
 /**
- * Created by Sinius on 6-4-2016.
+ * Created by Sijmen on 6-4-2016.
  */
 public class TestExampleService {
 

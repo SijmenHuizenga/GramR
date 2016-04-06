@@ -12,8 +12,8 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 /**
- * @author Sinius15
- * @see www.sinius15.com
+ * @author Sijmen15
+ * @see www.Sijmen15.com
  */
 public class YAMLFile {
 

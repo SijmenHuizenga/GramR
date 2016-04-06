@@ -6,7 +6,7 @@ import it.sijmen.gramr.example.service.ExampleService;
 import java.io.IOException;
 
 /**
- * Created by Sinius on 6-4-2016.
+ * Created by Sijmen on 6-4-2016.
  */
 public class MockExampleService extends ExampleService{
 

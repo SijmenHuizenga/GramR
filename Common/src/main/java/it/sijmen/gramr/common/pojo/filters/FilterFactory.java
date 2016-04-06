@@ -3,7 +3,7 @@ package it.sijmen.gramr.common.pojo.filters;
 import it.sijmen.gramr.common.pojo.Filter;
 
 /**
- * Created by Sinius on 5-4-2016.
+ * Created by Sijmen on 5-4-2016.
  */
 public class FilterFactory {
 

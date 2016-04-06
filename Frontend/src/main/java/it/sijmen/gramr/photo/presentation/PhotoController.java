@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by Sinius on 4-4-2016.
+ * Created by Sijmen on 4-4-2016.
  */
 @Singleton
 public class PhotoController extends AbstractController {
