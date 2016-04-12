@@ -119,4 +119,92 @@ Nu kan je een plaatje tekenen van de communicatie tussen de Service en de Data l
 
 De Service vraagt om een PhotoDAO. De Guice Injector geeft dan de juiste de klasse PhotoJDBCDAO. Zo kan (zonder dat de service daar last van heeft) een andere data source implementatie worden gebruikt.
 
+##H8 Frameworks & Maven
 
+Dit project is uitgevoerd door middel van een groot aantal andere libraries. Omdat de backend andere libraries nodig heeft dan de frontend, en er ook een aantal libraries zijn die beide nodig hebben wordt er gebruik gemaakt van 3 maven projecten. Deze maven projecten hebben de volgende dependenties:
+
+* Frontend: Bevat de presentatie laag code
+  * gramr.common: voor de pojo domein klasse
+  * gramr.backend: voor het direct aanroepen van klasse. Als REST communicatie wordt gebruikt is deze niet nodig.
+  * Javaee-api: voor de webapplicatie (servlets, jsp)
+  * Guice-servlet: Guice & Servlet link
+  * Jersey-client: Voor rest communicatie met de backend
+  * Jersey-media-json-jackson: voor JSON encoding/decoding binnen
+* Jersey
+  * Jstl: handige tags voor JSP files
+  * JJunit: testen
+* Backend: Bevat de service en data access laag
+  * Jaxrs-ri: voor de REST implementatie die ontbreekt in Tomcat
+  * Jersey-container-servlet: Jersey core met servlets voor REST communicatie
+  * Jersey-media-json-jackson: voor JSON encoding/decoding binnen Jersey
+  * Mysql-connector-java: JDBC mysql implementatie
+  * JJunit: testen
+* Common: Bevat alle
+  * Guice: Dependency Injection
+  * Jsr305: Voor veelgebruikte annotaties, nodig voor @Nullable
+  * Junit: testen
+
+##H9 Tests
+Alle losse onderdelen zijn los testbaar. Zie de testklasse hoe het is gedaan:
+
+*  ServiceProvider: TestExampleDirectServiceProvider.class
+* Service: TestExampleService.class
+* DAO implementatie: TestExampleJDBCDAO.class
+* Pojo: ExamplePojoTest.class
+* Model: TestExampleDirectModel.class
+
+Voor het testen zijn Mock objecten gebruikt die via Guice geïnjecteerd worden. Hierdoor is alles los te testen.
+
+##H10 Java EE & Guice Link
+In dit project wordt Guice gebruikt om maximale modulariteit te verzorgen. De volledige presentatie laag draait op dit moment binnen Tomcat met Java EE. Dit betekent dat 'mijn code' wodt gestart vanuit Tomcat. Het aanroepen van 'mijn code' gebeurt dus als volgt:
+
+``Ik -> Start Tomcat -> Bekijkt Web.XML -> Zoek juiste Controller -> Start mijn code``
+
+Het gedeelte `Zoek juiste controller` wil ik laten verzorgen door Guice zodat ik controllers simpel kan vervangen. Guice moet dus inhaken op Java EE. Dit gebeurt als volgt:
+
+Ik heb een WebFilter toegevoegd genaamd `GuiceWebFilter`. Dit filter wordt standaar verzorgd door de Guice Extension `com.google.inject.extensions:guice-servlet`. Dit filter verzorgt de initialisatie van Guice en verzorgt het kiezen van de juiste Controller
+
+Het `GuiceWebFilter` wil natuurlijk weten welke `Guice Module` hij moet gebruiken voor de Guice Configuratie. Normaalgesproken configureer je Guice met een `AbstractModule`, maar in dit geval (omdat Guice ook het kiezen van Controllers moet verzorgen) configureer ik Guice met een `ServletModule`. Mijn `ServletModule` heet `MyServletModule`.
+
+Guice weet nog niet welke `ServletModule` hij moet gebruiken. Daarom gaat Guice opzoek naar een `GuiceServletContextListener`. Dit gebeurt via Java EE Listeners die geconfigureerd worden in de `web.xml`. Ik heb in mijn `web.xml` dus `MyGuiceServletContextListener` als listener toegevoegd. Deze listener geeft de juiste injector als Guice daar om vraagt (in mijn geval een `Injector` gemaakt uit `MyServletModule`).
+
+Binnen `MyServletModule` registreer ik met behulp van de functie serve welke url door welke controller afgehandeld moet worden. Dit vervangt dus de `@WebServlet` annotatie die normaalgesproken voor deze taak wordt gebruikt. Bijvoorbeeld:
+
+``serve("/example/*").with(ExamplePageController.class);``
+Nu gaat het aanroepen van mijn code op de volgende manier:
+``Ik -> Start Tomcat -> Bekijkt Web.XML -> Guice selecteert controller -> Start mijn code``
+
+##H11 Requirements
+In dit hoofdstuk wordt behandeld waar de verschillende requirements zijn uitgewerkt. Alle functionele eisen zijn te vinden in de uiteindelijke applicatie. Deze zit bij dit document bijgevoegd. Niet-Functionele eisen:
+
+| Nr | Requirement uitleg                                                                       | Toelichting                                                                                                        |
+|----|------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
+| 1  | Snel kunt wisselen naar een andere relationele database.                                 | Database configuratie wordt geladen uit het bestand “C:\\gramrconfig.yaml”. Zie hoofdstuk H12 TODO voor meer info. |
+| 2  | Database configuratie bestand                                                            | Database configuratie wordt geladen uit het bestand “C:\\gramrconfig.yaml”. Zie hoofdstuk H12 TODO voor meer info. |
+| 3  | Pas het ‘Data Access Object pattern’ toe                                                 | Zie hoofdstuk: H7.5 Data                                                                                           |
+| 4  | De Presentatie laag moet de service laag kunnen aanroepen via directe methode-aanroepen. | Dit kan met behulp van de DirectServiceProvider’s Zie hoofdstuk: H7.4 Presentation & Service Link.                 |
+| 5  | De back end is via RESTcommunicatie aan te spreken.                                      | Dit kan met behulp van de RestServiceProviders’. Zie hoofdstuk: H7.4 Presentation & Service Link.                  |
+| 6  | Zie 5                                                                                    | Dit kan met behulp van de RestServiceProviders’. Zie hoofdstuk: H7.4 Presentation & Service Link.                  |
+| 7  | Broncode georganiseerd op functionaliteit.                                               | Zie hoofdstuk: H6 Packagediagram.                                                                                  |
+| 8  | De applicatie maakt gebruik van een heel aantal frameworks                               | Zie hoofdstuk: H8 Frameworks.                                                                                      |
+| 9  | Scheiding van view, controller, model. Views bevatten geen java-code.                    | Zie hoofdstuk: H7.2 Presentation.                                                                                  |
+| 10 | Controllers bevatten geen markup-code.                                                   | Zie hoofdstuk: H7.2 Presentation.                                                                                  |
+| 11 | De applicatie moet draaien in Tomcat v8                                                  | Ja                                                                                                                 |
+| 12 | De communicatie laag en databasetoegang zijn lost te testen.                             | Zie hoofdstuk: H9 Tests                                                                                            |
+
+##H12 TODO
+Zoals beschreven in de inleiding is de volledige applicatie uit-geprogrammeerd in minder dan een week. Hierdoor zijn er een aantal onderdelen niet uitgewerkt zoals ik ze zou willen uitwerken. Dit is puur gebrek aan tijd (i.v.m. slechte planning) en zou ik een volgende keer anders doen.
+
+De structuur is perfect, maar de details moeten nog wat aandacht besteden. De dingen die ik anders zou doen als ik nog een week extra zou hebben:
+
+* De database connectie wordt geregeld door een Factory. Deze Factory is redelijk slim: hij zal altijd maar één connectie openen en waar mogelijk de connectie cachen. Er is alleen het probleem dat deze Factory per request opnieuw wordt aangemaakt (ivm ServiceProviders met een lifetime van één request). Dit is totaal niet efficiënt. Ook (bedenk ik nu) is er geen aandacht besteed aan het sluiten van de geopende connecties.
+*  Binnen de front end wordt vaak de volgende actie opgehaald: Gebruiker uit het cookie halen, kijken of de gebruiker null is, zo ja, redirect naar hompage. Dit zou heel mooi gedaan kunnen worden in een Filter. Jammer dat ik hier geen tijd meer voor heb.
+*  Alle query’s worden zonder Prepared Statements uitgevoerd. Dit is héél slecht. Dit moet zeker veranderd worden.
+*  Sommige DAO’s werken met primaire types (geef een id) in plaats van pojo’s (geef een object). Dit vind ik jammer: De hele applicatie is heel mooi met objecten opgebouwd, maar daar dan net niet. Dit is simpel op te lossen, maar kost wel een aantal uur (die ik nu dus niet meer heb).
+*  Op dit moment wordt het configuratiebestand van de database met een lelijk YAML bestand op de C schijf geregeld. Dit kan écht niet. Voor nu was dit de snelste oplossing, maar het zou een stuk mooier zijn om dit via de web.xml (of een ander bestand) te laten lopen.
+* Documentatie in de vorm van JavaDoc is op dit moment minimaal aanwezig. Ik heb nu alleen documentatie geschreven op de plekken waarvan ik weet dat ik het morgen weer ben vergeten. Geef mij 2 uur, en dan is alles netjes gedocumenteerd.
+* URL Get argumenten?! Dat kan toch niet meer! Dit kan stukken mooier.
+
+Het komt er op neer: Ik ben niet tevreden over de details van deze applicatie. Als ik een week extra zou hebben zou de applicatie nog zoveel mooier werken, beter gedocumenteerd zijn en veiliger werken.
+
+Over de structuur ben wel ik erg tevreden. Op abstract niveau werkt de applicatie geweldig: Alles mooi met Dependency inversion, duidelijke klasse-namen, mooie structuren, juiste verantwoordelijkheden. Gewoon heel erg mooi.
